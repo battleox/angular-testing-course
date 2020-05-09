@@ -40,9 +40,9 @@ describe('CoursesCardListComponent', () => {
 
         component.courses = setupCourses();
 
-        fixture.detectChanges();
+        fixture.detectChanges();  // SANS CA, courses ne sera pas pris en compte et donc le DOM restera vide
 
-        const cards = el.queryAll(By.css(".course-card"));
+        const cards = el.queryAll(By.css(".course-card"));  // récupère tous les éléments ayant la classe course-card
 
         expect(cards).toBeTruthy("Could not find cards");
         expect(cards.length).toBe(12, "Unexpected number of courses");

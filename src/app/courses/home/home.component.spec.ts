@@ -62,7 +62,7 @@ describe('HomeComponent', () => {
 
   it("should display only beginner courses", () => {
 
-      coursesService.findAllCourses.and.returnValue(of(beginnerCourses));
+      coursesService.findAllCourses.and.returnValue(of(beginnerCourses));  // of permet de créer un observable qui emettra les données qu'il prend en paramètre
 
       fixture.detectChanges();
 
@@ -75,7 +75,7 @@ describe('HomeComponent', () => {
 
   it("should display only advanced courses", () => {
 
-      coursesService.findAllCourses.and.returnValue(of(advancedCourses));
+      coursesService.findAllCourses.and.returnValue(of(advancedCourses)); // of permet de créer un observable qui emettra les données qu'il prend en paramètre
 
       fixture.detectChanges();
 

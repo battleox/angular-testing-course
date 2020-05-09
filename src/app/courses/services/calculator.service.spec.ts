@@ -17,7 +17,7 @@ describe('CalculatorService', () => {
         TestBed.configureTestingModule({
             providers: [
                 CalculatorService,
-                {provide: LoggerService, useValue: loggerSpy}
+                {provide: LoggerService, useValue: loggerSpy} // à chaque fois que l'on aura besoin d'un LoggerService, on utilisera le loggerSpy
             ]
         });
 
@@ -33,7 +33,7 @@ describe('CalculatorService', () => {
 
         expect(result).toBe(4);
 
-        expect(loggerSpy.log).toHaveBeenCalledTimes(1);
+        expect(loggerSpy.log).toHaveBeenCalledTimes(1); // pour vérifier si log n'a été appelé qu'une seule fois
 
     });
 

@@ -15,7 +15,7 @@ describe('CoursesService', () => {
 
         TestBed.configureTestingModule({
             imports: [
-                HttpClientTestingModule
+                HttpClientTestingModule // pour faire un faux http service
             ],
             providers: [
                 CoursesService
@@ -32,7 +32,7 @@ describe('CoursesService', () => {
         coursesService.findAllCourses()
             .subscribe(courses => {
 
-                expect(courses).toBeTruthy('No courses returned');
+                expect(courses).toBeTruthy('No courses returned'); // pour voir si courses existent
 
                 expect(courses.length).toBe(12,
                     "incorrect number of courses");
@@ -44,11 +44,11 @@ describe('CoursesService', () => {
 
             });
 
-        const req = httpTestingController.expectOne('/api/courses');
+        const req = httpTestingController.expectOne('/api/courses'); // on s'attend à ce que l'on ne fasse qu'une seule requête à /api/courses
 
         expect(req.request.method).toEqual("GET");
 
-        req.flush({payload: Object.values(COURSES)});
+        req.flush({payload: Object.values(COURSES)}); // passe les données COURSES à findAllCourses, qui sont des données utilisées pour tester
 
     });
 
@@ -90,8 +90,8 @@ describe('CoursesService', () => {
             .toEqual(changes.titles.description);
 
         req.flush({
-            ...COURSES[12],
-            ...changes
+            ...COURSES[12], // valeur de course juste après le subscribe
+            ...changes  // paramètre de saveCourse
         })
 
     });
@@ -140,7 +140,7 @@ describe('CoursesService', () => {
         expect(req.request.params.get("pageSize")).toEqual("3");
 
         req.flush({
-            payload: findLessonsForCourse(12).slice(0,3)
+            payload: findLessonsForCourse(12).slice(0,3)  // on ne prend que les 3 premiers éléments
         });
 
 
@@ -148,7 +148,7 @@ describe('CoursesService', () => {
 
     afterEach(() => {
 
-        httpTestingController.verify();
+        httpTestingController.verify(); // pour s'assurer que seul la requête specifiée dans un it est executée et aucune autre
     });
 
 });
